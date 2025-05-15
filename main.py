@@ -1,41 +1,29 @@
-import mysql.connector
+import streamlit as st
+st.title("welcome streamlit")
+st.title("program")
+st.header("full stack development")
+st.subheader("introduction")
+st.text("anything")
+st.write("Open")
+st.badge("close",color="green")
+st.code("""
 
-con = mysql.connector.connect(
+def add(x, y): return x + y
+def subtract(x, y): return x - y
+def multiply(x, y): return x * y
+def divide(x, y): return "Cannot divide by zero!" if y == 0 else x / y
 
-    host = "localhost",
-    user = "root",
-    password = "",
-    database = "python new"
-)
+operations = {"1": add, "2": subtract, "3": multiply, "4": divide}
+choice = input("Choose: 1. Add  2. Subtract  3. Multiply  4. Divide\n")
+num1, num2 = float(input("First number: ")), float(input("Second number: "))
+
+print("Result:", operations.get(choice, lambda x, y: "Invalid choice")(num1, num2))
+
+""", language = "python" )
+
+with st.sidebar:
+    st.write("this is side bar.")
+    st.divider()
+    st.write("this is a silebar.")
+
  
-# if con:
-#    print("connection successful") 
-# else:
-#     print("connection failed")
-
-
-def insert ():
-    name = input("Enter your name:")
-    email = input("Enter your Email")
-    city = input("Enter your city")
-
-    res = con.cursor()
-    sql = "insert into user (name,email,city) values (%s,%s,%s)"
-    res.execute(sql,(name,email,city))
-    con.commit()
-    print("data insert successfully")
-
-insert() 
-
-def read():
-    res =con.cursor()
-    sql = "select * from user"
-    res.execute(sql)
-    result = res.fetchall
-    print(result)
-
-read()
-
-
-
-
